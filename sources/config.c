@@ -298,10 +298,14 @@ od_config_route_free(od_config_route_t *route)
 		free(route->auth);
 	if (route->auth_query)
 		free(route->auth_query);
+	if (route->auth_query_host)
+		free(route->auth_query_host);
 	if (route->auth_query_db)
 		free(route->auth_query_db);
 	if (route->auth_query_user)
 		free(route->auth_query_user);
+	if (route->auth_query_pass)
+		free(route->auth_query_pass);
 	if (route->storage)
 		od_config_storage_free(route->storage);
 	if (route->storage_name)
@@ -1061,12 +1065,18 @@ log_routes:;
 		if (route->auth_query)
 			od_log(logger, "config", NULL, NULL,
 			       "  auth_query       %s", route->auth_query);
+		if (route->auth_query_host)
+			od_log(logger, "config", NULL, NULL,
+			       "  auth_query_host    %s", route->auth_query_host);
 		if (route->auth_query_db)
 			od_log(logger, "config", NULL, NULL,
 			       "  auth_query_db    %s", route->auth_query_db);
 		if (route->auth_query_user)
 			od_log(logger, "config", NULL, NULL,
 			       "  auth_query_user  %s", route->auth_query_user);
+		if (route->auth_query_pass)
+			od_log(logger, "config", NULL, NULL,
+			       "  auth_query_pass  %s", route->auth_query_pass);
 		od_log(logger, "config", NULL, NULL,
 		       "  pool             %s", route->pool_sz);
 		od_log(logger, "config", NULL, NULL,

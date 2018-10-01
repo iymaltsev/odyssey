@@ -85,8 +85,10 @@ enum
 	OD_LAUTHENTICATION,
 	OD_LAUTH_COMMON_NAME,
 	OD_LAUTH_QUERY,
+	OD_LAUTH_QUERY_HOST,
 	OD_LAUTH_QUERY_DB,
-	OD_LAUTH_QUERY_USER
+	OD_LAUTH_QUERY_USER,
+	OD_LAUTH_QUERY_PASS,
 };
 
 typedef struct
@@ -165,8 +167,10 @@ od_config_keywords[] =
 	od_keyword("authentication",       OD_LAUTHENTICATION),
 	od_keyword("auth_common_name",     OD_LAUTH_COMMON_NAME),
 	od_keyword("auth_query",           OD_LAUTH_QUERY),
+	od_keyword("auth_query_host",      OD_LAUTH_QUERY_HOST),
 	od_keyword("auth_query_db",        OD_LAUTH_QUERY_DB),
 	od_keyword("auth_query_user",      OD_LAUTH_QUERY_USER),
+	od_keyword("auth_query_pass",      OD_LAUTH_QUERY_PASS),
 	{ 0, 0, 0 }
 };
 
@@ -636,6 +640,11 @@ od_config_reader_route(od_config_reader_t *reader, char *db_name, int db_name_le
 			if (! od_config_reader_string(reader, &route->auth_query))
 				return -1;
 			break;
+		/* auth_query_host */
+		case OD_LAUTH_QUERY_HOST:
+			if (! od_config_reader_string(reader, &route->auth_query_host))
+				return -1;
+			break;
 		/* auth_query_db */
 		case OD_LAUTH_QUERY_DB:
 			if (! od_config_reader_string(reader, &route->auth_query_db))
@@ -646,6 +655,13 @@ od_config_reader_route(od_config_reader_t *reader, char *db_name, int db_name_le
 			if (! od_config_reader_string(reader, &route->auth_query_user))
 				return -1;
 			break;
+		/* auth_query_pass */	
+		case OD_LAUTH_QUERY_PASS:
+			if (! od_config_reader_string(reader, &route->auth_query_pass))
+				return -1;
+			break;
+
+				
 		/* password */
 		case OD_LPASSWORD:
 			if (! od_config_reader_string(reader, &route->password))

@@ -83,8 +83,10 @@ struct od_config_route
 	char                *auth;
 	od_auth_t            auth_mode;
 	char                *auth_query;
+	char                *auth_query_host;
 	char                *auth_query_db;
 	char                *auth_query_user;
+	char                *auth_query_pass;
 	int                  auth_common_name_default;
 	od_list_t            auth_common_names;
 	int                  auth_common_names_count;
